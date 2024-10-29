@@ -1,0 +1,24 @@
+.container {
+  max-width: 600px;
+  margin-block: 50px;
+}
+.bg-color {
+  background-color: #f8f9fa;
+}
+.save-btn {
+  padding-inline: 50px;
+  border-radius: 10px;
+}
+
+.back-btn {
+  padding-inline: 50px;
+  border-radius: 10px;
+}
+
+.card-border {
+  border-radius: 10px;
+}
+
+.g-form{
+    gap: 20px;
+}

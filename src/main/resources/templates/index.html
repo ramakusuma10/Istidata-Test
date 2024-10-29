@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplikasi Data Kendaraan</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/base.css" />
+  </head>
+  <body>
+    <div class="container-page">
+      <div class="d-flex flex-row header-title">
+        <i class="bi bi-folder-fill i-folder"></i>
+        <h2 class="text-center mt-4">Aplikasi Data Kendaraan</h2>
+      </div>
+      <div class="card mt-4 card-color">
+        <div class="card-body">
+          <div class="form-row d-flex flex-column">
+            <div class="form-group col-md-8">
+              <label for="noRegistrasi">No Registrasi</label>
+              <input
+                type="text"
+                class="form-control"
+                style="width: 50%"
+                id="noRegistrasi"
+                placeholder="Masukkan No Registrasi"
+              />
+            </div>
+            <div class="form-group col-md-8">
+              <label for="namaPemilik">Nama Pemilik</label>
+              <input
+                type="text"
+                class="form-control"
+                style="width: 50%"
+                id="namaPemilik"
+                placeholder="Masukkan Nama Pemilik"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right mt-2">
+        <button type="button" class="btn btn-primary search-btn" id="searchBtn">
+          Search
+        </button>
+        <button type="button" class="btn btn-primary add-btn" id="addBtn">
+          Add
+        </button>
+      </div>
+      <div class="table-container">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr class="table-primary text-center">
+              <th style="width: 50px">No</th>
+              <th style="width: 150px">No Registrasi</th>
+              <th style="width: 200px">Nama Pemilik</th>
+              <th style="width: 150px">Merk Kendaraan</th>
+              <th style="width: 165px">Tahun Pembuatan</th>
+              <th style="width: 140px">Kapasitas</th>
+              <th style="width: 120px">Warna</th>
+              <th style="width: 150px">Bahan Bakar</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody" class="align-middle"></tbody>
+        </table>
+        <button id="resetBtn" onclick="resetSearch()" style="display: none;" class="btn btn-secondary mt-2 px-5">
+          Reset
+        </button>
+      </div>
+    </div>
+    <div
+      class="toast text-bg-success border-0 align-items-center"
+      id="toastSuccess"
+      style="position: absolute; top: 20px; right: 20px; z-index: 1050"
+      data-autohide="true"
+      data-delay="1000"
+    >
+      <div class="d-flex ">
+        <div class="toast-body fontToast">
+          <i class="bi bi-check-circle-fill fs-6"></i>
+          <span id="toastMessage" class="fs-6">Berhasil Menambahkan Kendaraan!</span>
+        </div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    <div
+      class="toast text-bg-success border-0 align-items-center"
+      id="toastEditedSuccess"
+      style="position: absolute; top: 20px; right: 20px; z-index: 1050"
+      data-autohide="true"
+      data-delay="1000"
+    >
+      <div class="d-flex ">
+        <div class="toast-body fontToast">
+          <i class="bi bi-check-circle-fill fs-6"></i>
+          <span id="toastMessageEdited" class="fs-6">Berhasil Memperbaharui Kendaraan!</span>
+        </div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast" 
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    <div
+    class="toast text-bg-danger border-0 align-items-center"
+    id="toastSearchFailed"
+    style="position: absolute; top: 20px; right: 20px; z-index: 1050"
+    data-autohide="true"
+    data-delay="1000"
+  >
+    <div class="d-flex ">
+      <div class="toast-body fontToast">
+        <i class="bi bi-exclamation-circle-fill fs-6"></i>
+        <span id="toastMessageSearched" class="fs-6">Gagal Mencari</span>
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast" 
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+  <div
+    class="toast text-bg-danger border-0 align-items-center"
+    id="toastFailedSearch"
+    style="position: absolute; top: 20px; right: 20px; z-index: 1050"
+    data-autohide="true"
+    data-delay="1000"
+  >
+    <div class="d-flex ">
+      <div class="toast-body fontToast">
+        <i class="bi bi-exclamation-circle-fill fs-6"></i>
+        <span id="toastMessageSearch" class="fs-6">Gagal Mencari</span>
+      </div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast" 
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+    <div class="modal" id="deleteModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="deleteMessage">Anda yakin menghapus data?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary px-5" id="confirmDeleteBtn">OK</button>
+            <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">Batal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="../static/datakendaraan.js"></script>
+    <script src="../static/toastcreate.js"></script>
+    <script src="../static/toastupdate.js"></script>
+    <script src="../static/toastsearch.js"></script>
+    <script src="../static/toastsfailedsearch.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.table-container {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.add-btn {
+  padding-inline: 60px;
+  border-radius: 10px;
+}
+
+.search-btn {
+  padding-inline: 50px;
+  border-radius: 10px;
+}
+
+.card-color {
+  background-color: #fce4d6;
+}
+
+.i-folder{
+    font-size: 40px;
+    margin-top: 15px;
+    color: cornflowerblue;
+}
+
+.header-title{
+    gap: 10px;
+}
+
+.text-table-center{
+   text-align: center;
+}
+.align-middle td {
+  vertical-align: middle;
+}
+
+.fontToast{
+  gap: 10px;
+}
+
+.container-page{
+  padding-inline: 100px;
+}

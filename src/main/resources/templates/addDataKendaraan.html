@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Data Kendaraan</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../assets/addDataKendaraan.css" />
+    <link rel="stylesheet" href="../assets/base.css" />
+  </head>
+  <body class="bg-color">
+    <div class="container-lg my-4">
+      <div class="d-flex flex-row header-title">
+        <i class="bi bi-folder-fill i-folder"></i>
+        <h2 class="text-center mt-4">Tambah Data Kendaraan</h2>
+      </div>
+      <div class="card mt-2 mb-5 px-2 shadow-sm card-border">
+        <div class="card-body">
+          <form id="dataForm" novalidate>
+            <div class="row g-form">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="noRegistrasi">No. Registrasi Kendaraan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="noRegistrasi"
+                    placeholder="Masukkan No Registrasi"
+                    required
+                    minlength="10"
+                    maxlength="10"
+                  />
+                  <div class="invalid-feedback" data-error="required">
+                    No. Registrasi harus diisi.
+                  </div>
+                  <div class="invalid-feedback" data-error="minlength">
+                    No Registrasi harus 10 karakter.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="namaPemilik">Nama Pemilik</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="namaPemilik"
+                    placeholder="Masukkan Nama Pemilik"
+                    required
+                  />
+                  <div class="invalid-feedback" data-error="required">
+                    Nama Pemilik harus diisi.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="merkKendaraan">Merk Kendaraan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="merkKendaraan"
+                    placeholder="Masukkan Merk Kendaraan"
+                    required
+                  />
+                  <div class="invalid-feedback" data-error="required">
+                    Merk Kendaraan harus diisi.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="alamatPemilik">Alamat Pemilik Kendaraan</label>
+                  <textarea
+                    class="form-control"
+                    id="alamatPemilik"
+                    rows="5"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback" data-error="required">
+                    Alamat Pemilik harus diisi.
+                  </div>
+                </div>
+                <div class="mt-5 mb-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary save-btn"
+                    onclick="simpanData()"
+                  >
+                    Simpan
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary back-btn"
+                    onclick="kembali()"
+                  >
+                    Kembali
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="tahunPembuatan">Tahun Pembuatan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="tahunPembuatan"
+                    placeholder="Masukkan Tahun Pembuatan"
+                    maxlength="4"
+                    required
+                    pattern="^\d{4}$"                    />
+                  <div class="invalid-feedback" data-error="required">
+                    Tahun Pembuatan harus diisi.
+                  </div>
+                  <div class="invalid-feedback" data-error="pattern">
+                    Tahun Pembuatan harus sesuai format (YYYY)
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="kapasitasSilinder">Kapasitas Silinder</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="kapasitasSilinder"
+                    placeholder="Masukkan Kapasitas Silinder"
+                    required
+                  />
+                  <div class="invalid-feedback" data-error="required">
+                    Kapasitas Silinder harus diisi
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="warnaKendaraan">Warna Kendaraan</label>
+                  <select class="form-select" id="warnaKendaraan">
+                    <option selected>Pilih Warna</option>
+                    <option value="MERAH">Merah</option>
+                    <option value="HITAM">Hitam</option>
+                    <option value="BIRU">Biru</option>
+                    <option value="ABU_ABU">Abu-Abu</option>
+                  </select>
+                  <div class="invalid-feedback" data-error="required">
+                    Warna Kendaraan harus dipilih
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="bahanBakar">Bahan Bakar</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bahanBakar"
+                    placeholder="Masukkan Bahan Bakar"
+                    required
+                  />
+                  <div class="invalid-feedback" data-error="required">
+                    Bahan bakar harus diisi.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div
+      class="toast text-bg-danger border-0 align-items-center"
+      id="toastFailed"
+      style="position: absolute; top: 20px; right: 20px; z-index: 1050"
+      data-autohide="true"
+      data-delay="1000"
+    >
+      <div class="d-flex ">
+        <div class="toast-body fontToast">
+          <i class="bi bi-exclamation-circle-fill fs-6"></i>
+          <span id="toastMessage" class="fs-6">Nomor Registrasi sudah terdaftar</span>
+        </div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/tambahdatakendaraan.js"></script>
+    <script src="../static/toastfailed.js"></script>
+  </body>
+</html>
